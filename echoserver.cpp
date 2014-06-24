@@ -1,9 +1,12 @@
 #include<iostream>
+#include<string.h>
 
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
 #include<arpa/inet.h>
+
+const int MAX_BUF_LEN = 256;
 
 using namespace std;
 
@@ -28,17 +31,25 @@ int main()
 
   //create a connection queue for clients.
   listen(server_sock, 5); //5 is the number of clinets which can wait.
+
+  char buff[MAX_BUF_LEN];
+  client_len = sizeof(client_address);
+  client_local_sock = accept(server_sock, (struct sockaddr *) &client_address, &client_len);  
   
   while(1)
     {
-      char ch;
       cout<<"server waiting...."<<endl;
-      client_len = sizeof(client_address);
-      client_local_sock = accept(server_sock, (struct sockaddr *) &client_address, &client_len);
-      read(client_local_sock, &ch, 1);
-      ch++;
-      write(client_local_sock, &ch, 1);
-      close(client_local_sock);
+      
+      read(client_local_sock, buff, MAX_BUF_LEN-1);
+      write(client_local_sock, buff, MAX_BUF_LEN-1);
+      
+      //check if it is "exit" message from client
+      if(!strncmp(buff, "exit", 4))
+      {
+       close(client_local_sock);
+       client_local_sock = accept(server_sock, (struct sockaddr *) &client_address, &client_len);
+      }
+      
     }
   return 0;
 }

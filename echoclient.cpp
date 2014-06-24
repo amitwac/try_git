@@ -1,10 +1,12 @@
 #include<iostream>
+#include<string.h>
 
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
 #include<arpa/inet.h>
 
+const int MAX_BUFFER_LEN = 256;
 using namespace std;
 
 int main()
@@ -26,10 +28,18 @@ int main()
       cerr<<"connection failure."<<endl;
       return 1;
     }
-  char ch = 'A';
-  write(sockfd, &ch, 1);
-  read(sockfd, &ch, 1);
-  cout<<"returned message from server - "<<ch<<endl;
+  char buffer[MAX_BUFFER_LEN];
+  
+  do 
+  {
+     memset(buffer, 0, strlen(buffer));
+     cin.getline(buffer, MAX_BUFFER_LEN);
+     write(sockfd, buffer, MAX_BUFFER_LEN-1);
+     read(sockfd, buffer, MAX_BUFFER_LEN-1);                      
+     cout<<"returned message from server - "<<buffer<<endl;
+   }while(strncmp(buffer, "exit", 4));
+  
+  
   close(sockfd);
   //cout<<"socket programming"<<endl;
   return 0;
