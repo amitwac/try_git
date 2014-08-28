@@ -1,0 +1,29 @@
+[root@rddev03v3 work]# g++ -Wall -o HTTPServer HTTPServer.h HTTPServer.cpp
+[root@rddev03v3 work]# ./HTTPServer &
+[1] 30399
+[root@rddev03v3 work]# ENTER read
+EXIT read
+Printing HTTP REQUEST
+GET / HTTP/1.1
+Host: rddev03v3.punin.sen.symantec.com:16415
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,hi;q=0.6,ms;q=0.4
+Cookie: mt_device=desktop; s_sq=%5B%5BB%5D%5D; s_sv_112_s1=1@16@a//1355293397813; s_sv_112_p1=1@99@d/11963/11962/11961/11960/9630&s/11964/11864/11357/11356/11503/10608/10075/7909/7908/7216/7214&e/57; s_pers=%20event69%3Devent69%7C1376029392738%3B%20s_eVar
+72%3D%255B%255B%27home%27%252C%271399636567347%27%255D%252C%255B%27hr%27%252C%271399636635689%27%255D%255D%7C1557403035689%3B%20s_fid%3D5229F2B88EABEF97-2A23EFF7E959845D%7C1471514837800%3B%20s_gpv%3Den%252Fus%253A%2520biz%253A%2520connect%253A%2520strg_cl
+ust%253A%2520forums%253A%2520how%2520to%2520check%2520veritas%2520sf%2520version%2520installed%7C1408358237818%3B%20s_nr%3D1408356437826-Repeat%7C1429092437826%3B; s_sess=%20s_sv_sid%3D605231912128%3B%20s_cc%3Dtrue%3B%20s_sq%3Dsyminfointranet%253D%252526p
+id%25253Dhr%2525253Ahr%2525253Aglobal%2525253Acomp%25252520applause_home%252526pidt%25253D1%252526oid%25253Dhttps%2525253A%2525252F%2525252Flogin.o3.symantec.com%2525252FIdPServlet%2525253Fidp_id%2525253DGloboforceProd%252526ot%25253DA%3B; s_vi=[CS]v1|286
+4116A0514AE3B-400001758003EF1C[CE
+EXIT printBuffer
+ENTER SendResMsg
+header written successfully
+blank line written
+EXIT sendResMsg
+ENTER closeConn
+EXIT closeConn
+EXIT main
+
+[1]+  Done                    ./HTTPServer
